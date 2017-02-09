@@ -11,13 +11,24 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+# Inherit from those products. Most specific first.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
-$(call inherit-product, device/huawei/kiwi/full_kiwi.mk)
 
-# Inherit some common LineageOS stuff.
-$(call inherit-product, vendor/cm/config/common_full_phone.mk)
+# Inherit some common Lineage stuff.
+$(call inherit-product, vendor/xenonhd/config/common_full_phone.mk)
 
-PRODUCT_NAME := lineage_kiwi
-BOARD_VENDOR := huawei
+# Inherit from kiwi device
+$(call inherit-product, device/huawei/kiwi/device.mk)
+
+# Device identifier. This must come after all inclusions
+PRODUCT_DEVICE := kiwi
+PRODUCT_NAME := xenonhd_kiwi
+PRODUCT_BRAND := HONOR
+PRODUCT_MODEL := KIW-L24
+PRODUCT_MANUFACTURER := HUAWEI
 
 PRODUCT_GMS_CLIENTID_BASE := android-huawei
+
+BOARD_VENDOR := huawei
